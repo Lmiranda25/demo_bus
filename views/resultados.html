@@ -1,0 +1,27 @@
+<div class="container mx-auto max-w-5xl px-4 py-8">
+  <!-- Encabezado -->
+  <div class="flex items-center gap-3 mb-6">
+    <button onclick="Router.go('/')" class="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-medium text-sm">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Volver
+    </button>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-800" id="results-title">Buscando...</h2>
+      <p class="text-slate-500 text-sm mt-0.5" id="results-date"></p>
+    </div>
+    <div class="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl font-bold text-sm border border-blue-100 self-start sm:self-auto" id="results-count">0 salidas</div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="flex gap-2 flex-wrap mb-5" id="filter-tipos"></div>
+
+  <!-- Lista de horarios -->
+  <div class="space-y-4" id="horarios-list">
+    <div class="flex justify-center py-16">
+      <div class="animate-spin w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+    </div>
+  </div>
+</div>

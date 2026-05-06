@@ -1,0 +1,10 @@
+[
+  {"id":"u1","nombre":"Admin Sistema","email":"admin@demo.com","password":"admin123","telefono":"999000001","dni":"00000001","rol":"admin","activo":true,"fechaRegistro":"2025-01-01"},
+  {"id":"u2","nombre":"Carlos Mendoza","email":"carlos@demo.com","password":"123456","telefono":"987654321","dni":"12345678","rol":"cliente","activo":true,"fechaRegistro":"2025-03-15"},
+  {"id":"u3","nombre":"Ana García","email":"ana@demo.com","password":"123456","telefono":"912345678","dni":"23456789","rol":"cliente","activo":true,"fechaRegistro":"2025-04-10"},
+  {"id":"u4","nombre":"Pedro López","email":"pedro@demo.com","password":"123456","telefono":"934567890","dni":"34567890","rol":"cliente","activo":true,"fechaRegistro":"2025-05-20"},
+  {"id":"u5","nombre":"María Torres","email":"maria@demo.com","password":"123456","telefono":"956789012","dni":"45678901","rol":"cliente","activo":false,"fechaRegistro":"2025-06-01"},
+  {"id":"u6","nombre":"José Ramírez","email":"jose@demo.com","password":"123456","telefono":"978901234","dni":"56789012","rol":"cliente","activo":true,"fechaRegistro":"2025-07-22"},
+  {"id":"u7","nombre":"Lucía Flores","email":"lucia@demo.com","password":"123456","telefono":"990123456","dni":"67890123","rol":"cliente","activo":true,"fechaRegistro":"2025-08-05"},
+  {"id":"u8","nombre":"Roberto Silva","email":"roberto@demo.com","password":"123456","telefono":"901234567","dni":"78901234","rol":"cliente","activo":true,"fechaRegistro":"2025-09-12"}
+]

@@ -1,0 +1,171 @@
+/* ============================================================
+   TransCorp — Estilos personalizados
+   Complementa Tailwind CDN
+   ============================================================ */
+
+/* ── Asientos ─────────────────────────────────────────────── */
+.seat {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px 8px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  user-select: none;
+}
+.seat::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 10%;
+  width: 80%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: inherit;
+  filter: brightness(0.75);
+}
+.seat.available  { background: #e2e8f0; color: #475569; border: 1px solid #cbd5e1; }
+.seat.available:hover { background: #bfdbfe; color: #1d4ed8; transform: translateY(-2px); border-color: #93c5fd; }
+.seat.selected   { background: #10b981; color: #fff; border: 1px solid #059669; }
+.seat.selected::after { background: #059669; }
+.seat.occupied   { background: #94a3b8; color: #f1f5f9; cursor: not-allowed; opacity: 0.55; }
+.seat.occupied::after { background: #64748b; }
+
+.seat-grid-4col { display: grid; grid-template-columns: 1fr 1fr 24px 1fr 1fr; gap: 8px; justify-items: center; }
+.seat-grid-3col { display: grid; grid-template-columns: 1fr 1fr 24px 1fr; gap: 8px; justify-items: center; }
+.seat-grid-2col { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 8px; justify-items: center; }
+.seat-aisle     { width: 24px; }
+
+/* ── Animaciones ─────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.view-enter { animation: fadeSlideUp 0.35s ease-out forwards; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.animate-spin { animation: spin 1s linear infinite; }
+
+/* ── Toast ──────────────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: calc(100vw - 2.5rem);
+}
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #1e293b;
+  color: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  min-width: 260px;
+  animation: fadeSlideUp 0.3s ease-out;
+  border-left: 4px solid #3b82f6;
+}
+.toast.success { border-color: #10b981; }
+.toast.error   { border-color: #ef4444; }
+.toast.info    { border-color: #3b82f6; }
+.toast.warning { border-color: #f59e0b; }
+.toast-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.toast-body { display: flex; flex-direction: column; gap: 2px; }
+.toast-title { font-weight: 700; }
+.toast-msg   { opacity: 0.85; line-height: 1.4; }
+
+/* ── Modal ──────────────────────────────────────────────── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 8000; display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+#modal-box {
+  background: #fff; border-radius: 1rem; width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: fadeSlideUp 0.25s ease-out;
+}
+
+/* ── QR Code simulado ───────────────────────────────────── */
+.qr-placeholder {
+  width: 160px; height: 160px;
+  background: repeating-conic-gradient(#000 0% 25%, #fff 0% 50%) 0 0 / 8px 8px;
+  border-radius: 4px;
+}
+
+/* ── Sidebar Admin ──────────────────────────────────────── */
+#admin-sidebar {
+  width: 240px; min-height: calc(100vh - 64px);
+  transition: transform 0.3s ease;
+}
+#admin-sidebar.collapsed { transform: translateX(-100%); }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ── Ticket de confirmación ─────────────────────────────── */
+.ticket-punch-l, .ticket-punch-r {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; background: #f8fafc;
+  border-radius: 50%; border: 1px solid #e2e8f0;
+}
+.ticket-punch-l { left: -10px; }
+.ticket-punch-r { right: -10px; }
+
+/* ── Responsive tabla → cards ───────────────────────────── */
+@media (max-width: 640px) {
+  .mob-card-table thead { display: none; }
+  .mob-card-table tr {
+    display: block; background: #fff; border: 1px solid #e2e8f0;
+    border-radius: 0.75rem; margin-bottom: 1rem; padding: 0.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .mob-card-table td {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.35rem 0; border: none; font-size: 0.85rem;
+  }
+  .mob-card-table td::before {
+    content: attr(data-label);
+    font-weight: 700; color: #64748b; margin-right: 0.5rem; flex-shrink: 0;
+  }
+}
+
+/* ── Print (Descarga PDF) ───────────────────────────────── */
+@media print {
+  header, footer, nav, #app-header, #app-footer,
+  button, .no-print { display: none !important; }
+  body { background: #fff; }
+  .ticket-print { break-inside: avoid; }
+}
+
+/* ── Barra progreso pago ────────────────────────────────── */
+.step-bar-item.active   .step-circle { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+.step-bar-item.done     .step-circle { background: #10b981; color: #fff; border-color: #10b981; }
+.step-bar-item.inactive .step-circle { background: #fff; color: #94a3b8; border-color: #cbd5e1; }
+.step-circle { width: 32px; height: 32px; border-radius: 50%; border: 2px solid; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; }
+
+/* ── Hero gradient ──────────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(135deg, #102a43 0%, #243b53 60%, #1a3a5c 100%);
+}
+
+/* ── Card hover lift ────────────────────────────────────── */
+.card-lift { transition: box-shadow 0.2s, transform 0.2s; }
+.card-lift:hover { box-shadow: 0 8px 32px rgba(30,41,59,0.12); transform: translateY(-2px); }
+
+/* ── Gráfico barra CSS (admin dashboard) ───────────────── */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 100px; }
+.bar { border-radius: 4px 4px 0 0; background: #3b82f6; min-width: 20px; transition: height 0.5s ease; }

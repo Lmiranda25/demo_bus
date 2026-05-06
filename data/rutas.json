@@ -1,0 +1,22 @@
+[
+  {"id":"r1","origen":"Lima","destino":"Arequipa","distanciaKm":1009,"duracionH":14},
+  {"id":"r2","origen":"Lima","destino":"Trujillo","distanciaKm":557,"duracionH":8},
+  {"id":"r3","origen":"Lima","destino":"Cusco","distanciaKm":1110,"duracionH":21},
+  {"id":"r4","origen":"Lima","destino":"Piura","distanciaKm":981,"duracionH":14},
+  {"id":"r5","origen":"Lima","destino":"Chiclayo","distanciaKm":770,"duracionH":11},
+  {"id":"r6","origen":"Lima","destino":"Ica","distanciaKm":303,"duracionH":4},
+  {"id":"r7","origen":"Lima","destino":"Huancayo","distanciaKm":330,"duracionH":6},
+  {"id":"r8","origen":"Lima","destino":"Tacna","distanciaKm":1293,"duracionH":18},
+  {"id":"r9","origen":"Arequipa","destino":"Lima","distanciaKm":1009,"duracionH":14},
+  {"id":"r10","origen":"Arequipa","destino":"Cusco","distanciaKm":521,"duracionH":9},
+  {"id":"r11","origen":"Arequipa","destino":"Tacna","distanciaKm":315,"duracionH":5},
+  {"id":"r12","origen":"Arequipa","destino":"Puno","distanciaKm":298,"duracionH":5},
+  {"id":"r13","origen":"Trujillo","destino":"Lima","distanciaKm":557,"duracionH":8},
+  {"id":"r14","origen":"Trujillo","destino":"Chiclayo","distanciaKm":209,"duracionH":3},
+  {"id":"r15","origen":"Cusco","destino":"Lima","distanciaKm":1110,"duracionH":21},
+  {"id":"r16","origen":"Cusco","destino":"Arequipa","distanciaKm":521,"duracionH":9},
+  {"id":"r17","origen":"Cusco","destino":"Puno","distanciaKm":389,"duracionH":6},
+  {"id":"r18","origen":"Piura","destino":"Lima","distanciaKm":981,"duracionH":14},
+  {"id":"r19","origen":"Chiclayo","destino":"Lima","distanciaKm":770,"duracionH":11},
+  {"id":"r20","origen":"Huancayo","destino":"Lima","distanciaKm":330,"duracionH":6}
+]

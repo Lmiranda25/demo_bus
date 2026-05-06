@@ -1,0 +1,60 @@
+<div class="min-h-screen flex items-center justify-center py-12 px-4 bg-slate-50">
+  <div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <a href="#/" class="inline-flex items-center gap-2 group">
+        <svg class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <rect x="2" y="7" width="20" height="12" rx="2" stroke-width="2"/>
+          <path d="M2 11h20M7 19v2M17 19v2M6 7V5a2 2 0 012-2h8a2 2 0 012 2v2" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="7" cy="15" r="1" fill="currentColor"/>
+          <circle cx="17" cy="15" r="1" fill="currentColor"/>
+        </svg>
+        <span class="text-2xl font-black text-corporate-900">Trans<span class="text-blue-600">Corp</span></span>
+      </a>
+      <h1 class="text-2xl font-bold text-slate-800 mt-4">Bienvenido de nuevo</h1>
+      <p class="text-slate-500 text-sm mt-1">Ingresa a tu cuenta para continuar</p>
+    </div>
+
+    <!-- Demo credentials -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-sm">
+      <p class="font-bold text-blue-800 mb-2">🚀 Credenciales demo:</p>
+      <div class="flex flex-col gap-2">
+        <button class="demo-fill text-left px-3 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition text-blue-700" data-email="admin@demo.com" data-pass="admin123">
+          <span class="font-bold">Admin:</span> admin@demo.com / admin123
+        </button>
+        <button class="demo-fill text-left px-3 py-2 bg-white rounded-lg border border-blue-200 hover:border-blue-400 transition text-blue-700" data-email="carlos@demo.com" data-pass="123456">
+          <span class="font-bold">Cliente:</span> carlos@demo.com / 123456
+        </button>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+      <form id="login-form" class="space-y-5">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">Correo electrónico</label>
+          <input id="email" type="email" placeholder="tu@correo.com" required
+            class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">Contraseña</label>
+          <div class="relative">
+            <input id="password" type="password" placeholder="••••••••" required
+              class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 pr-12">
+            <button type="button" onclick="this.previousElementSibling.type=this.previousElementSibling.type==='password'?'text':'password'" class="absolute right-3 top-3.5 text-slate-400 hover:text-slate-700">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow transition flex items-center justify-center gap-2 text-base">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Ingresar
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-sm text-slate-500 mt-6">
+      ¿No tienes cuenta? <a href="#/registro" class="text-blue-600 font-bold hover:underline">Regístrate gratis</a>
+    </p>
+  </div>
+</div>

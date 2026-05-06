@@ -1,0 +1,14 @@
+[
+  {"id":"b1","placa":"ABC-123","nombre":"El Rápido 1","tipo":"Ejecutivo","capacidad":40,"layout":"4col","pisos":1},
+  {"id":"b2","placa":"DEF-456","nombre":"El Rápido 2","tipo":"Ejecutivo","capacidad":40,"layout":"4col","pisos":1},
+  {"id":"b3","placa":"GHI-789","nombre":"VIP Express 1","tipo":"VIP","capacidad":36,"layout":"3col","pisos":1},
+  {"id":"b4","placa":"JKL-012","nombre":"VIP Express 2","tipo":"VIP","capacidad":36,"layout":"3col","pisos":1},
+  {"id":"b5","placa":"MNO-345","nombre":"Suite Cama 1","tipo":"Cama","capacidad":24,"layout":"2col","pisos":2},
+  {"id":"b6","placa":"PQR-678","nombre":"Suite Cama 2","tipo":"Cama","capacidad":24,"layout":"2col","pisos":2},
+  {"id":"b7","placa":"STU-901","nombre":"Económico 1","tipo":"Económico","capacidad":44,"layout":"4col","pisos":1},
+  {"id":"b8","placa":"VWX-234","nombre":"Económico 2","tipo":"Económico","capacidad":44,"layout":"4col","pisos":1},
+  {"id":"b9","placa":"YZA-567","nombre":"VIP Plus 1","tipo":"VIP Plus","capacidad":32,"layout":"3col","pisos":1},
+  {"id":"b10","placa":"BCD-890","nombre":"VIP Plus 2","tipo":"VIP Plus","capacidad":32,"layout":"3col","pisos":1},
+  {"id":"b11","placa":"EFG-123","nombre":"Gran Cama 1","tipo":"Cama","capacidad":20,"layout":"2col","pisos":2},
+  {"id":"b12","placa":"HIJ-456","nombre":"Ejecutivo Plus","tipo":"Ejecutivo","capacidad":40,"layout":"4col","pisos":1}
+]

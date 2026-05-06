@@ -1,0 +1,184 @@
+<div class="container mx-auto max-w-4xl px-4 py-8">
+  <div class="flex items-center gap-3 mb-6">
+    <button onclick="Router.go('/asientos/' + (AppState.horarioSeleccionado?.id||''))" class="text-blue-600 hover:text-blue-800 flex items-center gap-1 font-medium text-sm">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Volver a asientos
+    </button>
+  </div>
+
+  <!-- Barra de pasos -->
+  <div class="flex items-center justify-center gap-0 mb-8 overflow-x-auto">
+    <div class="step-bar-item done flex items-center gap-2">
+      <div class="step-circle">✓</div>
+      <span class="text-xs font-bold text-emerald-600 hidden sm:inline">Ruta</span>
+    </div>
+    <div class="w-8 h-px bg-emerald-400 mx-1"></div>
+    <div class="step-bar-item done flex items-center gap-2">
+      <div class="step-circle">✓</div>
+      <span class="text-xs font-bold text-emerald-600 hidden sm:inline">Asientos</span>
+    </div>
+    <div class="w-8 h-px bg-blue-600 mx-1"></div>
+    <div class="step-bar-item active flex items-center gap-2">
+      <div class="step-circle">3</div>
+      <span class="text-xs font-bold text-blue-700 hidden sm:inline">Pago</span>
+    </div>
+    <div class="w-8 h-px bg-slate-300 mx-1"></div>
+    <div class="step-bar-item inactive flex items-center gap-2">
+      <div class="step-circle">4</div>
+      <span class="text-xs font-bold text-slate-400 hidden sm:inline">Confirmación</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Formulario -->
+    <div class="md:col-span-2 space-y-6">
+      <!-- Datos pasajero -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-black">1</span>
+          Datos del Pasajero
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <label class="block text-sm font-bold text-slate-600 mb-1.5">Nombre completo</label>
+            <input id="nombre" type="text" placeholder="Juan Pérez" required class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-600 mb-1.5">DNI / Pasaporte</label>
+            <input id="dni" type="text" placeholder="12345678" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-600 mb-1.5">Teléfono / WhatsApp</label>
+            <input id="telefono" type="tel" placeholder="987654321" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800">
+          </div>
+          <div class="col-span-2">
+            <label class="block text-sm font-bold text-slate-600 mb-1.5">Correo electrónico</label>
+            <input id="email" type="email" placeholder="tu@correo.com" required class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800">
+          </div>
+        </div>
+      </div>
+
+      <!-- Método de pago -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-black">2</span>
+          Método de Pago
+        </h3>
+
+        <div class="space-y-3">
+          <!-- Tarjeta -->
+          <label class="flex gap-3 p-4 border-2 border-blue-500 rounded-xl bg-blue-50 cursor-pointer">
+            <input type="radio" name="metodo-pago" value="Tarjeta" checked class="mt-1 text-blue-600">
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-slate-800">Tarjeta Crédito / Débito</span>
+                <div class="flex gap-1">
+                  <div class="bg-blue-700 text-white text-[8px] font-black px-1.5 py-0.5 rounded">VISA</div>
+                  <div class="bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded">MC</div>
+                </div>
+              </div>
+              <div id="panel-Tarjeta" class="metodo-panel grid grid-cols-2 gap-3">
+                <div class="col-span-2">
+                  <input id="card-number" type="text" placeholder="0000 0000 0000 0000" maxlength="19"
+                    oninput="this.value=this.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim()"
+                    class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                  <input id="card-exp" type="text" placeholder="MM/AA" maxlength="5"
+                    oninput="if(this.value.length===2&&!this.value.includes('/'))this.value+='/'"
+                    class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                  <input id="card-cvc" type="text" placeholder="CVC" maxlength="3"
+                    class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <!-- Yape -->
+          <label class="flex gap-3 p-4 border-2 border-slate-200 rounded-xl hover:border-purple-400 cursor-pointer transition">
+            <input type="radio" name="metodo-pago" value="Yape" class="mt-1 text-purple-600">
+            <div class="flex-1 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-slate-800">Yape</span>
+                <p class="text-xs text-slate-500 mt-0.5">Escanea el QR con tu app</p>
+              </div>
+              <span class="bg-purple-600 text-white text-sm font-black px-3 py-1 rounded-lg">Yape</span>
+            </div>
+            <div id="panel-Yape" class="metodo-panel hidden"></div>
+          </label>
+
+          <!-- Plin -->
+          <label class="flex gap-3 p-4 border-2 border-slate-200 rounded-xl hover:border-cyan-400 cursor-pointer transition">
+            <input type="radio" name="metodo-pago" value="Plin" class="mt-1 text-cyan-600">
+            <div class="flex-1 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-slate-800">Plin</span>
+                <p class="text-xs text-slate-500 mt-0.5">Escanea el QR con tu app</p>
+              </div>
+              <span class="bg-cyan-500 text-white text-sm font-black px-3 py-1 rounded-lg">Plin</span>
+            </div>
+            <div id="panel-Plin" class="metodo-panel hidden"></div>
+          </label>
+
+          <!-- Culqi -->
+          <label class="flex gap-3 p-4 border-2 border-slate-200 rounded-xl hover:border-blue-400 cursor-pointer transition">
+            <input type="radio" name="metodo-pago" value="Culqi" class="mt-1 text-blue-600">
+            <div class="flex-1 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-slate-800">Culqi</span>
+                <p class="text-xs text-slate-500 mt-0.5">Pasarela de pagos peruana</p>
+              </div>
+              <div class="w-10 h-10 bg-blue-600 text-white font-black rounded-lg flex items-center justify-center text-sm">C</div>
+            </div>
+            <div id="panel-Culqi" class="metodo-panel hidden"></div>
+          </label>
+
+          <!-- MercadoPago -->
+          <label class="flex gap-3 p-4 border-2 border-slate-200 rounded-xl hover:border-yellow-400 cursor-pointer transition">
+            <input type="radio" name="metodo-pago" value="MercadoPago" class="mt-1 text-yellow-600">
+            <div class="flex-1 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-slate-800">MercadoPago</span>
+                <p class="text-xs text-slate-500 mt-0.5">Pago internacional seguro</p>
+              </div>
+              <div class="w-10 h-10 bg-yellow-400 text-white font-black rounded-lg flex items-center justify-center text-sm">MP</div>
+            </div>
+            <div id="panel-MercadoPago" class="metodo-panel hidden"></div>
+          </label>
+        </div>
+
+        <div class="mt-4 flex items-center gap-2 text-xs text-slate-500 bg-slate-50 rounded-xl p-3">
+          <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Pago 100% seguro — encriptado con SSL 256-bit
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen -->
+    <div class="md:col-span-1">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-20">
+        <h3 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Resumen</h3>
+        <div class="space-y-2.5 text-sm mb-5">
+          <div class="flex justify-between"><span class="text-slate-500">Origen:</span><strong class="text-slate-800" id="pay-origen">-</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Destino:</span><strong class="text-slate-800" id="pay-destino">-</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Fecha:</span><strong class="text-slate-800" id="pay-fecha">-</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Hora:</span><strong class="text-slate-800" id="pay-hora">-</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Servicio:</span><strong class="text-slate-800" id="pay-bus">-</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Asientos:</span><strong class="text-slate-800" id="pay-asientos">-</strong></div>
+        </div>
+        <div class="border-t border-slate-200 pt-4 mb-5">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-slate-700">Total:</span>
+            <span class="text-2xl font-black text-blue-600" id="pay-total">S/ 0.00</span>
+          </div>
+        </div>
+        <button id="btn-pagar" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-base">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Confirmar y Pagar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
