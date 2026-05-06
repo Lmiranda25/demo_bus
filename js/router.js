@@ -13,7 +13,10 @@ const Router = {
   },
 
   start(){
-    window.addEventListener('popstate', () => Router._resolve(Router._currentPath()));
+    // hashchange: se dispara cuando el usuario hace click en <a href="#/...">
+    // popstate:   se dispara con history.back/forward (botones del navegador)
+    window.addEventListener('hashchange', () => Router._resolve(Router._currentPath()));
+    window.addEventListener('popstate',   () => Router._resolve(Router._currentPath()));
     Router._resolve(Router._currentPath());
   },
 
