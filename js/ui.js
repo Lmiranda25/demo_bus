@@ -31,15 +31,22 @@ const UI = {
   },
 
   /* ── Toast ───────────────────────────────────────────── */
-  toast(title, msg='', type='info', duration=4000){
+  toast(title, msg='', type='info', duration=6000){
     const icons = { success:'✅', error:'❌', info:'ℹ️', warning:'⚠️' };
     const container = document.getElementById('toast-container');
     if(!container) return;
     const el = document.createElement('div');
     el.className = `toast ${type}`;
-    el.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ️'}</span><div class="toast-body"><span class="toast-title">${title}</span>${msg?`<span class="toast-msg">${msg}</span>`:''}</div>`;
+    el.innerHTML = `
+      <span class="toast-icon">${icons[type]||'ℹ️'}</span>
+      <div class="toast-body" style="flex:1">
+        <span class="toast-title">${title}</span>
+        ${msg?`<span class="toast-msg">${msg}</span>`:''}
+      </div>
+      <button onclick="this.parentElement.remove()" style="background:none;border:none;color:inherit;opacity:0.6;cursor:pointer;font-size:1.2rem;line-height:1;padding:0 0 0 8px;flex-shrink:0" title="Cerrar">&times;</button>`;
     container.appendChild(el);
-    setTimeout(() => el.remove(), duration);
+    const t = setTimeout(() => el.remove(), duration);
+    el.querySelector('button').addEventListener('click', () => clearTimeout(t));
   },
 
   /* ── Modal ───────────────────────────────────────────── */

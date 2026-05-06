@@ -32,9 +32,17 @@ const Store = {
   },
 
   async seed(){
-    const files = ['ciudades','rutas','buses','horarios','usuarios','reservas'];
-    // Base = URL del documento sin el archivo final ni el hash. document.baseURI no incluye el hash.
-    const base = document.baseURI.replace(/#.*$/,'').replace(/[^/]*$/, '');
+    const SEED_V = '3'; // incrementar aquí para forzar re-seed global
+    const files  = ['ciudades','rutas','buses','horarios','usuarios','reservas'];
+    const base   = document.baseURI.replace(/#.*$/,'').replace(/[^/]*$/, '');
+
+    // Si la versión del seed no coincide, limpiar todo y re-sembrar
+    if(localStorage.getItem('tc_seed_v') !== SEED_V){
+      Object.keys(KEYS).forEach(k => localStorage.removeItem(KEYS[k]));
+      localStorage.setItem('tc_seed_v', SEED_V);
+      console.log('Seed: nueva versión, limpiando localStorage...');
+    }
+
     for(const f of files){
       if(Store.get(f) === null){
         try{
