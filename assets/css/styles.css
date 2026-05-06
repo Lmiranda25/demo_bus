@@ -52,17 +52,14 @@
 .animate-spin { animation: spin 1s linear infinite; }
 
 /* ── Toast ──────────────────────────────────────────────── */
+/* #toast-container: posicionado por Tailwind (fixed top-4 right-4 z-[9999])
+   NO redefinir aquí — conflicto top+bottom estiraba el elemento a pantalla completa
+   bloqueando todos los clicks (capa transparente invisible). */
 #toast-container {
-  position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: calc(100vw - 2.5rem);
+  pointer-events: none;  /* el contenedor no bloquea clicks */
 }
 .toast {
+  pointer-events: auto;  /* los toasts sí reciben eventos */
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
