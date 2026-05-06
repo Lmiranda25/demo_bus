@@ -16,6 +16,35 @@ Pages.resultados = function(){
   let horarios = Store.all('horarios').filter(h => rutaIds.includes(h.rutaId) && h.fecha === fecha);
   const buses  = Store.all('buses');
 
+  // Si no hay horarios para esta fecha, generar dinámicamente clonando plantillas de esa ruta
+  if(horarios.length === 0 && rutas.length > 0){
+    const plantillas = Store.all('horarios').filter(h => rutaIds.includes(h.rutaId));
+    const vistoBus = new Set();
+    plantillas.forEach(t => {
+      if(vistoBus.has(t.busId)) return;
+      vistoBus.add(t.busId);
+      const idVirtual = 'v_' + t.rutaId + '_' + t.busId + '_' + fecha.replace(/-/g,'');
+      const existe = Store.find('horarios', idVirtual);
+      if(existe){
+        horarios.push(existe);
+      } else {
+        const clone = {
+          id: idVirtual,
+          rutaId: t.rutaId,
+          busId: t.busId,
+          fecha: fecha,
+          horaSalida: t.horaSalida,
+          horaLlegada: t.horaLlegada,
+          precio: t.precio,
+          asientosOcupados: [],
+          virtual: true
+        };
+        Store.add('horarios', clone);
+        horarios.push(clone);
+      }
+    });
+  }
+
   // Renderizar filtros por tipo
   const tiposUnicos = [...new Set(horarios.map(h => {
     const b = buses.find(b => b.id === h.busId);

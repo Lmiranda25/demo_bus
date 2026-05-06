@@ -32,12 +32,12 @@ const Header = {
             ${session
               ? `<div class="flex items-center gap-3">
                    <span class="text-slate-300 text-xs">Hola, <strong class="text-white">${session.nombre.split(' ')[0]}</strong></span>
-                   <div class="relative group">
-                     <button class="flex items-center gap-1 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">
+                   <div class="relative" id="user-dropdown-wrap">
+                     <button onclick="Header.toggleDropdown()" class="flex items-center gap-1 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition">
                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
                        <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                      </button>
-                     <div class="absolute right-0 top-full mt-2 w-44 bg-white rounded-lg shadow-xl border border-slate-100 py-1 hidden group-hover:block z-50 text-slate-700">
+                     <div id="user-dropdown-menu" class="absolute right-0 top-full mt-2 w-44 bg-white rounded-lg shadow-xl border border-slate-100 py-1 hidden z-50 text-slate-700">
                        <a href="#/mis-reservas" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-slate-50"><svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Mis Reservas</a>
                        <a href="#/perfil" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-slate-50"><svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>Mi Perfil</a>
                        ${isAdmin ? `<a href="#/admin" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-slate-50"><svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Admin</a>` : ''}
@@ -79,6 +79,21 @@ const Header = {
     const ham = document.getElementById('hamburger');
     const mob = document.getElementById('mobile-menu');
     if(ham && mob) ham.onclick = () => mob.classList.toggle('hidden');
+
+    // Cerrar dropdown al hacer click fuera
+    document.removeEventListener('click', Header._outsideClick);
+    Header._outsideClick = (e) => {
+      const wrap = document.getElementById('user-dropdown-wrap');
+      if(wrap && !wrap.contains(e.target)){
+        document.getElementById('user-dropdown-menu')?.classList.add('hidden');
+      }
+    };
+    setTimeout(() => document.addEventListener('click', Header._outsideClick), 0);
+  },
+
+  toggleDropdown(){
+    const menu = document.getElementById('user-dropdown-menu');
+    if(menu) menu.classList.toggle('hidden');
   },
 
   logout(){
