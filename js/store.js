@@ -33,12 +33,14 @@ const Store = {
 
   async seed(){
     const files = ['ciudades','rutas','buses','horarios','usuarios','reservas'];
-    const base = document.querySelector('base')?.href || location.href.replace(/[^/]*$/, '');
+    // Base = URL del documento sin el archivo final ni el hash. document.baseURI no incluye el hash.
+    const base = document.baseURI.replace(/#.*$/,'').replace(/[^/]*$/, '');
     for(const f of files){
       if(Store.get(f) === null){
         try{
           const res = await fetch(`${base}data/${f}.json`);
           if(res.ok){ Store.set(f, await res.json()); }
+          else { console.warn('Seed HTTP',res.status,f); }
         }catch(e){ console.warn('Seed failed:',f,e); }
       }
     }

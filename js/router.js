@@ -62,14 +62,15 @@ const Router = {
     root.innerHTML = '<div class="flex justify-center py-20"><div class="animate-spin w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full"></div></div>';
 
     try{
-      const base = document.querySelector('base')?.href || location.href.replace(/[^/]*$/, '');
+      const base = document.baseURI.replace(/#.*$/,'').replace(/[^/]*$/, '');
       const res = await fetch(`${base}views/${viewName}.html?v=${Date.now()}`);
-      if(!res.ok) throw new Error('View not found');
+      if(!res.ok) throw new Error('View HTTP '+res.status);
       const html = await res.text();
       root.innerHTML = html;
       root.firstElementChild?.classList.add('view-enter');
     }catch(e){
-      root.innerHTML = `<div class="text-center py-20 text-slate-500"><p class="text-6xl mb-4">🚌</p><p class="text-xl font-bold">Página no encontrada</p><button onclick="Router.go('/')" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg">Volver al inicio</button></div>`;
+      console.error('Router error:', e);
+      root.innerHTML = `<div class="text-center py-20 text-slate-500"><p class="text-6xl mb-4">🚌</p><p class="text-xl font-bold">Página no encontrada</p><p class="text-sm mt-2">${e.message||''}</p><button onclick="Router.go('/')" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg">Volver al inicio</button></div>`;
     }
 
     // Ejecutar init de la página
